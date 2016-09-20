@@ -51,14 +51,20 @@ def sumClosestPairs(matrix, color):
 	"find and sum the closest pair distances of same color in matrix"
 	sum = 0
 
-	for i, x in enumerate(matrix):
-		for j, y in enumerate(matrix):
+	for i1, x1 in enumerate(matrix):
+		for j1, y1 in enumerate(matrix):
 			if matrix[i][j] == color:
-				"find closest pair distance"
+				"find next distance of same color"
+				"store closest distance found"
 				"add to sum"
 				"make sure pairwise color does not repeat distance"
 				pass
 	return sum;
+
+def dist(x1, y1, x2, y2):
+	a = numpy.array((x1, y1))
+	b = numpy.array((x2, y2))
+	return numpy.linalg.norm(a-b);
 
 def main():
 	X = sys.argv[1]
