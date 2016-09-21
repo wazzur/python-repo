@@ -1,1 +1,13 @@
-This is a git repo
+This is a git repo for the coloring problem
+
+the basic program for a random coloring has been completed.
+
+Work to be completed:
+write better acceptance and handling of user arguments (add preprocessing function?)
+write better/more efficient function for finding closest distances
+write comments all over the place
+implement new coloring techniques besides random coloring
+discuss keeping multiple coloring techniques vs only producing a single, optimal coloring vs user selection of technique(s)
+verify code functionality with in-class vagrant machines
+add third dimension
+possibly create a pretty GUI
