@@ -37,29 +37,45 @@ def color(matrix, colorArray):
 
 
 def calculateL(matrix, K):
+	lowest = 99999
 	pairSums = []
 	for c in range(0, K):
-		pairSums.append(sumClosestPairs(matrix, colorArray[c]))
+		sum = sumClosestPairs(matrix, colorArray[c])
+		pairSums.append(sum)
+		if sum < lowest:
+			lowest = sum
 
-	print "\nThe sums are: "
+	print "\nThe sums for each colors are: "
 	print pairSums
 
 	"Objective is to maximize the minimum of these distances"
-	return;
+	return lowest;
 
 def sumClosestPairs(matrix, color):
 	"find and sum the closest pair distances of same color in matrix"
 	sum = 0
 
-	for i1, x1 in enumerate(matrix):
-		for j1, y1 in enumerate(matrix):
+	for i, x in enumerate(matrix):
+		for j, y in enumerate(matrix):
 			if matrix[i][j] == color:
-				"find next distance of same color"
-				"store closest distance found"
-				"add to sum"
-				"make sure pairwise color does not repeat distance"
-				pass
+				sum += findClosest(matrix, i, j, color)
 	return sum;
+
+def findClosest(matrix, x1, y1, color):
+	min = 99999
+	for i, x2 in enumerate(matrix):
+                for j, y2 in enumerate(matrix):
+			if int(i) == int(x1):
+				if int(j) == int(y1):
+					continue
+			if matrix[i][j] == color:
+				checkDist = dist(x1,y1,i,j)
+				if checkDist < min:
+					min = checkDist
+	if min == 99999:
+		return 0;
+	else:
+		return min;
 
 def dist(x1, y1, x2, y2):
 	a = numpy.array((x1, y1))
@@ -78,10 +94,11 @@ def main():
 	print getColors(int(K))
 
 	print "\n"
-
 	test = color(test, getColors(int(K)))
 	printMatrix(test)
 
-	calculateL(test, int(K))
+	L = calculateL(test, int(K))
+	print "\nMin L for this coloring:"
+	print L
 
 main()
