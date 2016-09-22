@@ -1,38 +1,34 @@
 import sys
-import numpy
+import math
 from random import randint
 
-colorArray = numpy.array(['Red', 'Green', 'Blue', 'Yellow', 'Teal',
-                'Magenta', 'Orange', 'Purple'])
+
+"TODO: create dictionary to map integers to colors"
 
 
 def createMatrix(X, Y):
-	matrix = numpy.chararray((X,Y), itemsize = 8 )
-	matrix[:] = 'Black'
+	matrix = [[-1 for x in range(X)] for y in range(Y)]
 	return matrix;
 
 
-def printMatrix(matrix):
+def printRawMatrix(matrix):
 	for i, y in enumerate(matrix):
 		print matrix[i]
 	return;
 
 
-def getColors(K):
-	if K < colorArray.size:
-		subArray = []
-                for i in xrange(0, K):
-                        subArray.append(colorArray[i])
-                return subArray;
-	else:
-		return colorArray;
+def colorMatrix(matrix):
+"TODO: NEEDS WORK"
+	for i, x in enumerate(matrix):
+		for j, y in enumerate(matrix):
+	                "TODO: set matrix number to dictionary color entry"
+	return matrix;
 
 
-def color(matrix, colorArray):
+def color(matrix, K):
         for i, x in enumerate(matrix):
 		for j, y in enumerate(matrix):
-			choice = randint(0, len(colorArray)-1)
-			matrix[i][j] = colorArray[choice]
+			matrix[i][j] = randint(0, K-1)
 	return matrix;
 
 
@@ -40,7 +36,7 @@ def calculateL(matrix, K):
 	lowest = 99999
 	pairSums = []
 	for c in range(0, K):
-		sum = sumClosestPairs(matrix, colorArray[c])
+		sum = sumClosestPairs(matrix, c)
 		pairSums.append(sum)
 		if sum < lowest:
 			lowest = sum
@@ -51,6 +47,7 @@ def calculateL(matrix, K):
 	"Objective is to maximize the minimum of these distances"
 	return lowest;
 
+
 def sumClosestPairs(matrix, color):
 	"find and sum the closest pair distances of same color in matrix"
 	sum = 0
@@ -60,6 +57,7 @@ def sumClosestPairs(matrix, color):
 			if matrix[i][j] == color:
 				sum += findClosest(matrix, i, j, color)
 	return sum;
+
 
 def findClosest(matrix, x1, y1, color):
 	min = 99999
@@ -77,10 +75,12 @@ def findClosest(matrix, x1, y1, color):
 	else:
 		return min;
 
+
 def dist(x1, y1, x2, y2):
-	a = numpy.array((x1, y1))
-	b = numpy.array((x2, y2))
-	return numpy.linalg.norm(a-b);
+	a = (x1, y1)
+	b = (x2, y2)
+	return math.hypot(b[0]-a[0], b[1]-a[1]);
+
 
 def main():
 	X = sys.argv[1]
@@ -91,11 +91,13 @@ def main():
 	print "up to " + K + " colors will be used"
 
 	test = createMatrix(int(X), int(Y))
-	print getColors(int(K))
-
 	print "\n"
-	test = color(test, getColors(int(K)))
-	printMatrix(test)
+	test = color(test, int(K))
+
+	printRawMatrix(test)
+	print "\n"
+	colorMatrix(test)
+	"TODO: test printing colored matrix after function is written"
 
 	L = calculateL(test, int(K))
 	print "\nMin L for this coloring:"
