@@ -1,1 +1,27 @@
-This is a git repo
+This is a git repo for the coloring problem
+
+the basic program for a random coloring has been completed.
+
+------------------------------------------------------------
+
+9/22:
+
+Work to be completed:
+Piyush asked me to use integers with a dictionary to define colors
+Piyush also asked to not use numpy import (so this means reworking arrays)
+write better acceptance and handling of user arguments (add preprocessing function?)
+write better/more efficient function for finding closest distances
+write comments all over the place
+implement new coloring techniques besides random coloring
+discuss keeping multiple coloring techniques vs only producing a single, optimal coloring vs user selection of technique(s)
+verify code functionality with in-class vagrant machines
+add third dimension
+possibly create a pretty GUI
+
+Note: 
+I added a few TODO: statements in the code to show 
+what needs work at a given time.
+
+--------------------------------------------------------------
+
+9/29 - updated code to be functional with python3
