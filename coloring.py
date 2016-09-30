@@ -26,7 +26,7 @@ def colorMatrix(matrix):
 
 
 def color(matrix, K):
-	for i, x in enumerate(matrix):
+        for i, x in enumerate(matrix):
 		for j, y in enumerate(matrix):
 			matrix[i][j] = randint(0, K-1)
 	return matrix;
@@ -91,11 +91,12 @@ def main():
 	print("up to " + K + " colors will be used")
 
 	test = createMatrix(int(X), int(Y))
+
 	print("\n")
 	test = color(test, int(K))
-
 	printRawMatrix(test)
 	print("\n")
+
 	colorMatrix(test)
 	"TODO: test printing colored matrix after function is written"
 
