@@ -41,6 +41,7 @@ def calculateL(matrix, K):
 		if sum < lowest:
 			lowest = sum
 
+	"TODO make pairsums return dictionary representing colors to distances"
 	print("\nThe sums for each colors are: ")
 	print(pairSums)
 
@@ -83,25 +84,48 @@ def dist(x1, y1, x2, y2):
 
 
 def main():
-	X = sys.argv[1]
-	Y = sys.argv[2]
-	K = sys.argv[3]
+	dim = 2
+	if len(sys.argv) == 4 or 5:
+		X = sys.argv[1]
+		Y = sys.argv[2]
+		if len(sys.argv) == 5:
+			dim = 3
+			Z = sys.argv[3]
+			K = sys.argv[4]
+		else:
+			K = sys.argv[3]
+	else:
+		X = input("Enter X dimension value: ")
+		Y = input("Enter Y dimension value: ")
+		choice = input("would you like a Z dimension?  [Y/N]: ")
+		if choice == 'Y':
+			dim = 3
+			Z = input ("Enter Z dimension value: ")
+		K = input("Enter how many colors(K) you would like: ")
+
 	print("X is set to " + X)
 	print("Y is set to " + Y)
-	print("up to " + K + " colors will be used")
+	if dim == 3:
+		print("Z is set to " + Z)
+	print(K + " colors will be used")
 
-	test = createMatrix(int(X), int(Y))
+	if dim == 2:
+		test = createMatrix(int(X), int(Y))
+	if dim == 3:
+		test = createMatrix(int(X), int(Y), int(Z))
 
 	print("\n")
 	test = colorRandomly(test, int(K))
 	printRawMatrix(test)
 	print("\n")
 
+
 	"colorMatrix(test)"
 	"TODO: test printing colored matrix after function is written"
 
+
 	L = calculateL(test, int(K))
-	print("\nMin L for this coloring:")
+	print("\nMin L for this coloring: ")
 	print(L)
 
 main()

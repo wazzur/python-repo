@@ -23,6 +23,9 @@ what needs work at a given time.
 
 --------------------------------------------------------------
 9/29 - updated code to be functional with python3
-
+--------------------------------------------------------------
+10/4 - updated code to be more flexible with argument handling
+	added more TODO notes.
+	started working on accepting 3D matrixes
 
 
