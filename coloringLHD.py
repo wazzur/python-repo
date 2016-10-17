@@ -12,13 +12,7 @@
 
 import sys
 import math
-
-def colorSequence(numOfColors):
-	'''
-	Returns a list of integers of length numofColors for
-	each color that needs to be included.
-	'''
-	return [color for color in range(numOfColors)]
+import pprint
 
 def columnSteps(numOfColors):
 	'''
@@ -47,10 +41,9 @@ def columnSteps(numOfColors):
 
 def colorLatinHypercube(matrix, K):
 	''' 
-		Method of creating a sequence string of 1 to n 
-	nonrepeating numbers where each number represents a 
-	color. For increasing n, each row begins the string at
-	an increasing n column steps to the right.
+		Method of determining color dispersion based on latin hypercube
+	designs. For increasing n, each row begins the string at an 
+	increasing n column steps to the right.
 
 	Pattern:
 		
@@ -80,16 +73,24 @@ def colorLatinHypercube(matrix, K):
 
 	'''
 
-	# get list sequence of colors
-	sequence = colorSequence(K)
-	print (sequence)
-
 	# get number of column steps to the right
 	steps = columnSteps(K)
 	print (steps)
 
+	# create dummy matrix
+	matrix = [[-1 for x in range(20)] for y in range(8)]
+
+	# assign the matrix a color number based on formula
+	for a, x in enumerate(matrix):
+		for b, y in enumerate(matrix[a]):
+			if (K + a * (K - steps) + b + 1) % K == 0:
+				matrix[a][b] = K
+			else:
+				matrix[a][b] = (K + a * (K - steps) + b + 1) % K
+
+	pprint.pprint(matrix)
 		
 
 
-colorLatinHypercube("dummy", 13)
+colorLatinHypercube("dummy", 8)
 
