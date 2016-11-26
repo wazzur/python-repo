@@ -103,4 +103,3 @@ def colorLatinHypercube(matrix, K, Z):
 
 #dummy = matrix = [[-1 for x in range(20)] for y in range(8)]
 #colorLatinHypercube(matrix, 8)
-
