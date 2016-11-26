@@ -1,6 +1,15 @@
-This is a git repo for the coloring problem
+This is a git repo README file for the coloring problem below:
 
-the basic program for a random coloring has been completed.
+...insert coloring problem statement here...
+
+Code runs with optional commandline arguments. 
+Constraints:
+X,Y,Z,K assumed input as positive integers > 0.
+
+Acceptable runs:
+python3 coloring.py
+python3 coloring.py X Y K
+python3 coloring.py X Y Z K
 
 ------------------------------------------------------------
 9/22:
@@ -12,7 +21,8 @@ write better acceptance and handling of user arguments (add preprocessing functi
 write better/more efficient function for finding closest distances
 write comments all over the place
 implement new coloring techniques besides random coloring
-discuss keeping multiple coloring techniques vs only producing a single, optimal coloring vs user selection of technique(s)
+discuss keeping multiple coloring techniques vs only producing a single, 
+    optimal coloring vs user selection of technique(s)
 verify code functionality with in-class vagrant machines
 add third dimension
 possibly create a pretty GUI
@@ -29,3 +39,17 @@ possibly create a pretty GUI
 	Improved function passing
 	added small comments
 
+--------------------------------------------------------------
+11/25 - Large update
+    Solved bug with unmatching dimensions, and rewrote chunks of many code blocks
+    revamped 3D support and removed the dim variable
+    Extrapolated the preprocessing, summarizing and printing into distinct functions
+    Evolved the find L function to use dictionaries as well as
+        find all such minimums, not just the fist such min.
+    Integrated Jennifer's module for latin hypercube design
+    Wrote a loop and menu function for easy singular runs
+    Added basic 3D checking in hypercube design
+    Wrote run function to test fixed matrix over many iterations
+
+    Remaining:
+        Extend 3D functionality in hypercube design
