@@ -4,7 +4,7 @@
 # Module for coloring matrix with distributed latin			#
 # hypercube design. 										#
 #															#
-# coloringLHD_v01.py 							#
+# coloringLHD_v01.py 							            #
 # By: Jennifer Yarboro										#
 # 10/16/2016												#
 #															#
@@ -57,7 +57,7 @@ def colorLatinHypercube(matrix, K, Z):
     X3 = 4 to 6 colors 		2 column steps
 
     X4 = (4+2+1)
-        = 7 to 12 colors		3 column steps
+        = 7 to 12 colors	3 column steps
 
     X5 = (7+4+2)
         = 13 to 23 colors	4 column steps
@@ -79,18 +79,12 @@ def colorLatinHypercube(matrix, K, Z):
         for b, y in enumerate(matrix[a]):
             if Z:
                 for c, z in enumerate(matrix[b]):
-                    pass
 
-                    #Jennifer:
-                    #implement 3D version here
-                    #Z is set to none if matrix is 2d, so if it exists it is 3d
-                    #i believe it will be an extension of the 2d solution
+                    if (K + a * (K - steps) + b + 1 + c * (K - steps - 1)) % K == 0:
+                        matrix[a][b][c] = K - 1
+                    else:
+                        matrix[a][b][c] = ((K + a * (K - steps) + b + 1 + c * (K - steps - 1)) % K) - 1
 
-                    # copy of 2d solution below:
-                    #if (K + a * (K - steps) + b + 1) % K == 0:
-                    #    matrix[a][b] = K - 1
-                    #else:
-                    #    matrix[a][b] = ((K + a * (K - steps) + b + 1) %K) - 1
 
             else:
                 if (K + a * (K - steps) + b + 1) % K == 0:

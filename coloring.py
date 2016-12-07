@@ -147,6 +147,7 @@ def menu():
     print("Select Coloring:")
     print("O - Optimized")
     print("R - Randomized")
+    print("C - Compare")
     print("Q - Quit")
     print("------------------")
     return input()
@@ -170,6 +171,8 @@ def main():
             print("Optimized Coloring:")
             opt = LHD.colorLatinHypercube(raw, K, Z)
             summerize(opt, K, Z)
+        elif (choice == "c") or (choice == "C"):
+            run(X,Y,Z,K,1)
         elif (choice == "q") or (choice == "Q"):
             break;
         else:
@@ -187,15 +190,12 @@ def getL(matrix, K, Z):
     return lowest
 
 
-def run(it = 1000):
+def run(X=10, Y=10, Z=10, K=20, it=1000):
     "runs a fixed matrix many times to compare results"
     "store max, min and avg? at least the best..."
 
-    X = 80
-    Y = 80
-    Z = None
-    K = 256
-
+    maxMatrix = None
+    max = 0
     RMAX = 0
     RMIN = sys.maxsize
     OMAX = 0
@@ -210,6 +210,9 @@ def run(it = 1000):
         RMEAN += RL
         if RL > RMAX:
             RMAX = RL
+            if RMAX > max:
+                max = RMAX
+                maxMatrix = rand
         if RL < RMIN:
             RMIN = RL
 
@@ -220,11 +223,16 @@ def run(it = 1000):
         OMEAN += OL
         if OL > OMAX:
             OMAX = OL
+            if OMAX > max:
+                max = OMAX
+                maxMatrix = opt
         if OL < OMIN:
             OMIN = OL
 
     OMEAN = OMEAN/it
     RMEAN = RMEAN/it
+
+    pp.pprint(maxMatrix)
 
     print("Stats over ", it, " iterations")
     print("Random Max: ", RMAX)
@@ -237,8 +245,12 @@ def run(it = 1000):
 
 
 
-run()
+"RUNS THE FIXED PARAMETER TEST OVER MANY ITERATIONS"
+#run()
 
 "RUNS THE PROGRAM"
-#main()
+main()
+
+
+
 
